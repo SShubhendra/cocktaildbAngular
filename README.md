@@ -4,7 +4,8 @@
 ## Development server
 Run
 
-npm i
+npm i ,
+
 ng serve
 
 for a dev server. Navigate to `http://localhost:4200/`. 
