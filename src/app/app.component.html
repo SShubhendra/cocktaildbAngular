@@ -1,0 +1,56 @@
+<br>
+<br>
+<div class="container">
+  <mat-list role="list" >
+    <h1>Category</h1>
+    <select [(ngModel)]="selectedcategory"  (change)="filter(selectedcategory,0)">
+      <option   value="">All</option>
+      <option *ngFor="let x of category" value="{{x}}">{{x}}</option>
+    </select>
+    <h1>glass</h1>
+    <select  [(ngModel)]="selectedglass"  (change)="filter(selectedglass,1)">
+      <option   value="">All</option>
+      <option  *ngFor="let x of  glass" value="{{x}}">{{x}}</option>
+    </select>
+    <h1>alcohalcat</h1>
+    <select  [(ngModel)]="selectedalcohalcat"  (change)="filter(selectedalcohalcat,2)">
+      <option   value="">All</option>
+      <option  *ngFor="let x of  alcohalcat" value="{{x}}">{{x}}</option>
+    </select>
+    <h1>ingradient</h1>
+    <select  [(ngModel)]="selectedingradient"  (change)="filter(selectedingradient,3)">
+      <option   value="">All</option>
+      <option  *ngFor="let x of  ingradient" value="{{x}}">{{x}}</option>
+    </select>
+    <h1>Measure</h1>
+    <select  [(ngModel)]="selectedmeasure"  (change)="filter(selectedmeasure,4)">
+      <option   value="">All</option>
+      <option  *ngFor="let x of  measure" value="{{x}}">{{x}}</option>
+    </select>
+      <div>
+        <div >
+          <table #productsTable class="display" style="width:100%">
+            <thead>
+            <tr >
+            <th *ngFor="let item of products[0] | keyvalue">{{item.key}}</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let i of products">
+                <td  *ngFor="let item of i | keyvalue">
+                   <img class="images" *ngIf="item.key=='strDrinkThumb'" mat-card-sm-image src="{{item.value}}" />
+                   <span *ngIf="item.key!='strDrinkThumb'">{{item.value}}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+  </div>
+</mat-list>
+
+<div class="pagination">
+  <button >&laquo;</button>
+  <button (click)="getDrink(i)" *ngFor="let i of paginationData">{{i}}</button>
+  <button href="#">&raquo;</button>
+</div>
+</div>
