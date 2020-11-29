@@ -4,7 +4,7 @@
 ## Development server
 Run
 
-npm i ,
+npm i 
 
 ng serve
 
