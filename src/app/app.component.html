@@ -1,56 +1,80 @@
-<br>
-<br>
 <div class="container">
-  <mat-list role="list" >
-    <h1>Category</h1>
-    <select [(ngModel)]="selectedcategory"  (change)="filter(selectedcategory,0)">
-      <option   value="">All</option>
-      <option *ngFor="let x of category" value="{{x}}">{{x}}</option>
-    </select>
-    <h1>glass</h1>
-    <select  [(ngModel)]="selectedglass"  (change)="filter(selectedglass,1)">
-      <option   value="">All</option>
-      <option  *ngFor="let x of  glass" value="{{x}}">{{x}}</option>
-    </select>
-    <h1>alcohalcat</h1>
-    <select  [(ngModel)]="selectedalcohalcat"  (change)="filter(selectedalcohalcat,2)">
-      <option   value="">All</option>
-      <option  *ngFor="let x of  alcohalcat" value="{{x}}">{{x}}</option>
-    </select>
-    <h1>ingradient</h1>
-    <select  [(ngModel)]="selectedingradient"  (change)="filter(selectedingradient,3)">
-      <option   value="">All</option>
-      <option  *ngFor="let x of  ingradient" value="{{x}}">{{x}}</option>
-    </select>
-    <h1>Measure</h1>
-    <select  [(ngModel)]="selectedmeasure"  (change)="filter(selectedmeasure,4)">
-      <option   value="">All</option>
-      <option  *ngFor="let x of  measure" value="{{x}}">{{x}}</option>
-    </select>
-      <div>
-        <div >
-          <table #productsTable class="display" style="width:100%">
-            <thead>
-            <tr >
-            <th *ngFor="let item of products[0] | keyvalue">{{item.key}}</th>
-            </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let i of products">
-                <td  *ngFor="let item of i | keyvalue">
-                   <img class="images" *ngIf="item.key=='strDrinkThumb'" mat-card-sm-image src="{{item.value}}" />
-                   <span *ngIf="item.key!='strDrinkThumb'">{{item.value}}</span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-  </div>
-</mat-list>
+  <div class="row">
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
+      <div class="row">
+        <div class="col-xs-12 col-sm-10 col-md-10 col-sm-offset-1 col-md-offset-2">
+          <ul class="nav">
+            <li>
+              Category :
+              <select [(ngModel)]="selectedcategory" (change)="filter(selectedcategory,0)">
+                <option value="">All</option>
+                <option *ngFor="let x of category" value="{{x}}">{{x}}</option>
+              </select>
+            </li>
+            <li>
+              glass :
+              <select [(ngModel)]="selectedglass" (change)="filter(selectedglass,1)">
+                <option value="">All</option>
+                <option *ngFor="let x of  glass" value="{{x}}">{{x}}</option>
+              </select>
+            </li>
+            <li>
+              alcohal :
+              <select [(ngModel)]="selectedalcohalcat" (change)="filter(selectedalcohalcat,2)">
+                <option value="">All</option>
+                <option *ngFor="let x of  alcohalcat" value="{{x}}">{{x}}</option>
+              </select>
+            </li>
+            <li>
 
-<div class="pagination">
-  <button >&laquo;</button>
-  <button (click)="getDrink(i)" *ngFor="let i of paginationData">{{i}}</button>
-  <button href="#">&raquo;</button>
-</div>
-</div>
+              Ingradient :
+              <select [(ngModel)]="selectedingradient" (change)="filter(selectedingradient,3)">
+                <option value="">All</option>
+                <option *ngFor="let x of  ingradient" value="{{x}}">{{x}}</option>
+              </select>
+            </li>
+            <li>
+              Measure :
+              <select [(ngModel)]="selectedmeasure" (change)="filter(selectedmeasure,4)">
+                <option value="">All</option>
+                <option *ngFor="let x of  measure" value="{{x}}">{{x}}</option>
+              </select>
+            </li>
+            <li>
+              <button type="button" class="btn btn-default" (click)="filter('',5)">Reset Filter</button>
+            </li>
+          </ul>
+        </div>
+        <div class="pagination">
+          <!-- <button>&laquo;</button> -->
+          <button (click)="getDrink(i)" *ngFor="let i of paginationData">{{i}}</button>
+          <!-- <button href="#">&raquo;</button> -->
+        </div>
+      </div>
+
+      <mat-list role=" list">
+        <div>
+          <div>
+            <table class="display" style="width:100%">
+              <thead>
+                <tr>
+                  <th *ngFor="let item of products[0] | keyvalue">{{item.key}}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngIf="!products?.length"><b>No cockTail found</b></tr>
+                <tr *ngFor="let i of products">
+                  <td *ngFor="let item of i | keyvalue">
+                    <img class="images" *ngIf="item.key=='strDrinkThumb'" mat-card-sm-image src="{{item.value}}" />
+                    <span *ngIf="item.key!='strDrinkThumb'">{{item.value}}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </mat-list>
+
+
+    </div>
+  </div>

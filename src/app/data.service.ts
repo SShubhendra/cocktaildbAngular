@@ -8,8 +8,8 @@ export class DataService {
 
   constructor(private httpClient: HttpClient) { }
 
-   public   sendGetRequest(url){
-    return  this.httpClient.get(url);
+   public  async  sendGetRequest(url){
+    return  this.httpClient.get(url).toPromise();
   }
 
 }
